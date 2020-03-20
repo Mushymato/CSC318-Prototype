@@ -10,10 +10,22 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="style.css">
     <script src="prototype.js"></script>
+    <script type="text/javascript">
+        window.onload = () => {
+            const params = getParams(window.location.href);
+            for (value in data) {
+                const hl = $('<div></div>');
+                const ln = $('<a>' + data[value].name + '</a>');
+                ln.prop('href', 'learn_definition.html?' + encodeQueryData(params) + '&topic=' + value);
+                hl.append(ln);
+                $('#topics').append(hl);
+            }
+        }
+    </script>
 </head>
 
 <body>
-    <form method="POST">
+    <form method="GET">
         <h2 id="username">Username</h2>
         <h5>Level [<span id="level">1</span>]</h5>
         <div class="progress">
@@ -21,7 +33,8 @@
         </div>
         <br />
         <h5>Topics</h5>
-        <div><a href="learn_definition.html">High Interest Saving Account</a></div>
+        <div id="topics">
+        </div>
     </form>
     <div class="navigation row">
         <div class="col-2"><a href="search.html">🔍</a></div>
