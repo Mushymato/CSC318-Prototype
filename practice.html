@@ -9,26 +9,42 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="style.css">
+    <script src="prototype.js"></script>
+    <script type="text/javascript">
+        window.onload = () => {
+            updateDashboard();
+            let params = getParams(window.location.href);
+            for (value in data) {
+                const hl = $('<div></div>');
+                const ln = $('<a>' + data[value].name + '</a>');
+                params.topic = value;
+                params.quiz_idx = 0;
+                ln.prop('href', 'practice_quiz.html' + encodeQueryData(params));
+                hl.append(ln);
+                $('#topics').append(hl);
+            }
+        }
+    </script>
 </head>
 
 <body>
     <form method="GET">
-        <h2>Username</h2>
-        <h5>Level [1]</h5>
+        <h2 id="username">Username</h2>
+        <h5>Level [<span id="level">1</span>]</h5>
         <div class="progress">
-            <div class="filled" style="--fill: 5%;"></div>
+            <div id="expbar" class="filled" style="--fill: 0%;"></div>
         </div>
         <br />
-        <h5>Topics</h5>
-        <div><a href="practice_quiz.html">High Interest Saving Account</a></div>
+        <h5>Exercises</h5>
+        <div id="topics"></div>
     </form>
     <div class="navigation row">
         <div class="col-2"><a href="search.html">🔍</a></div>
         <div class="col-2"><a href="dashboard.html">Home</a></div>
         <div class="col-2"><a href="learn.html">Learn</a></div>
         <div class="col-2"><a href="practice.html">Practice</a></div>
-        <div class="col-2"><a href="profile.html">Profile</div>
-        <div class="col-2"><a href="friends.html">Friends</div>
+        <div class="col-2"><a href="profile.html">Profile</a></div>
+        <div class="col-2"><a href="friends.html">Friends</a></div>
     </div>
 </body>
 

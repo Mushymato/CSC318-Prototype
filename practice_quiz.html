@@ -9,28 +9,61 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="style.css">
+    <script src="prototype.js"></script>
+    <script type="text/javascript">
+        function quizRight(e) {
+            let target = $(e.target);
+            target.addClass('exp')
+            target.html(target.html() + ' Correct (+10 exp)');
+            const a = $('<a>Next</a>');
+            a.addClass('btn btn-secondary col');
+            const add10Exp = () => {
+                addExp(10);
+            }
+            a.click(add10Exp);
+            $('#message').append(a)
+        }
+        function quizWrong() {
+            $('#message').html('Try again!');
+        }
+        window.onload = () => {
+            updateDashboard();
+            let params = getParams(window.location.href);
+            const value = params.topic;
+            const quiz = data[value].practice[params.quiz_idx];
+            $('#question').html(quiz.question);
+            for (i in quiz.choices) {
+                const li = $('<li></li>');
+                const a = $('<a>' + quiz.choices[i] + '</a>');
+                a.prop('href', '#');
+                if (i == quiz.correct) {
+                    a.click(quizRight);
+                } else {
+                    a.click(quizWrong);
+                }
+                li.append(a);
+                $('#choices').append(li);
+            }
+        }
+    </script>
 </head>
 
 <body>
     <form method="GET">
         <br />
-        <h5>How much interest do high interest saving accounts typically offer?</h5>
+        <h5 id="question"></h5>
         <div>
-            <ol>
-                <li><a href="practice_quiz_wrong.html">0.5%</a></li>
-                <li><a href="practice_quiz_right.html">2.0%</a></li>
-                <li><a href="practice_quiz_wrong.html">5.0%</a></li>
-                <li><a href="practice_quiz_wrong.html">10.0%</a></li>
-            </ol>
+            <ol id="choices"></ol>
         </div>
+        <div id="message"></div>
     </form>
     <div class="navigation row">
         <div class="col-2"><a href="search.html">🔍</a></div>
         <div class="col-2"><a href="dashboard.html">Home</a></div>
         <div class="col-2"><a href="learn.html">Learn</a></div>
         <div class="col-2"><a href="practice.html">Practice</a></div>
-        <div class="col-2"><a href="profile.html">Profile</div>
-        <div class="col-2"><a href="friends.html">Friends</div>
+        <div class="col-2"><a href="profile.html">Profile</a></div>
+        <div class="col-2"><a href="friends.html">Friends</a></div>
     </div>
 </body>
 

@@ -14,9 +14,10 @@ const data = {
         ],
         practice: [
             {
-                type: 'question',
+                type: 'Question',
                 question: 'How much interest do high interest saving accounts typically offer?',
-                choices: ['0.5%', '2.0%', '5.0%', '10.0%']
+                choices: ['0.5%', '2.0%', '5.0%', '10.0%'],
+                correct: 1
             }
         ]
     }
