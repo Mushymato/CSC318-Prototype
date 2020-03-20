@@ -1,14 +1,14 @@
 const data = {
     HISA: {
         name: 'High Interest Savings Account',
-        definition: 'High interest savings accounts, as their name suggests, offer a much higher interest rate than what’s available with a regular savings account. Financial institutions are able to offer these rates for a few different reasons:\n<ul>\n<li>Some of the banks are branchless, which cuts down on costs.</li>\n<li>Because transactions can be costly, most customers don’t use these accounts for daily activity, so from the bank’s end there aren’t many transactions to process (which also keeps costs low).</li>\n<li>Banks offer high interest rates, in order to acquire new customers.</li>\n</ul>',
+        definition: 'High interest savings accounts, as their name suggests, offer a much higher interest rate than what’s available with a regular savings account. Financial institutions are able to offer these rates for a few different reasons:\n<ul>\n<li>Some of the banks are branchless, which cuts down on costs.</li>\n<li>Because transactions can be costly, most customers don\'t use these accounts for daily activity, so from the bank\'s end there aren\'t many transactions to process (which also keeps costs low).</li>\n<li>Banks offer high interest rates, in order to acquire new customers.</li>\n</ul>',
         learn: [
             {
-                type: 'video',
+                type: 'Video',
                 link: 'https://www.youtube.com/embed/8edPzh71RIQ'
             },
             {
-                type: 'reading',
+                type: 'Reading',
                 link: 'https://en.wikipedia.org/wiki/Interest'
             }
         ],
@@ -64,7 +64,9 @@ function updateDashboard() {
         $('.tip').hide();
     }
     $('a').each((i, v) => {
-        $(v).prop('href', $(v).prop('href') + encodeQueryData(params));
+        if ($(v).prop('href')) {
+            $(v).prop('href', $(v).prop('href') + encodeQueryData(params));
+        }
     })
 }
 
@@ -74,6 +76,7 @@ function addExp(exp) {
         params.exp = 0;
     }
     params.exp += exp;
+    delete params.link;
     window.location.replace("dashboard.html" + encodeQueryData(params));
 }
 

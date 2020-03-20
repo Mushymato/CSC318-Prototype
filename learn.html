@@ -12,11 +12,13 @@
     <script src="prototype.js"></script>
     <script type="text/javascript">
         window.onload = () => {
-            const params = getParams(window.location.href);
+            updateDashboard();
+            let params = getParams(window.location.href);
             for (value in data) {
                 const hl = $('<div></div>');
                 const ln = $('<a>' + data[value].name + '</a>');
-                ln.prop('href', 'learn_definition.html?' + encodeQueryData(params) + '&topic=' + value);
+                params.topic = value;
+                ln.prop('href', 'learn_definition.html' + encodeQueryData(params));
                 hl.append(ln);
                 $('#topics').append(hl);
             }
