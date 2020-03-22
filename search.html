@@ -15,11 +15,11 @@
             $('#search').change((e) => {
                 let params = getParams(window.location.href);
                 const value = $('#search').val().trim();
-                if (data[value]) {
+                if (data[value] != undefined) {
                     const hl = $('<div></div>');
                     hl.addClass('highlight');
                     const ln = $('<a>' + data[value].name + '</a>');
-                    params[topic] = value;
+                    params.topic = value;
                     ln.prop('href', 'learn_definition.html' + encodeQueryData(params));
                     hl.append(ln);
                     $('#results').append(hl);
