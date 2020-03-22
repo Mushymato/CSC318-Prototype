@@ -20,15 +20,14 @@ const data = {
                 correct: 1
             }
         ]
-    }
-    
+    },
     ETF: {
         name: 'ETF',
         definition: 'An exchange-traded fund (ETF) is an investment fund traded on stock exchanges, much like stocks. An ETF holds assets such as stocks, commodities, or bonds and generally operates with an arbitrage mechanism designed to keep it trading close to its net asset value, although deviations can occasionally occur.',
         learn: [
             {
                 type: 'Video',
-                link: 'https://www.youtube.com/watch?v=OwpFBi-jZVg'
+                link: 'https://www.youtube.com/embed/OwpFBi-jZVg'
             },
             {
                 type: 'Reading',
