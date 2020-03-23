@@ -51,14 +51,17 @@ form {
 }
 
 .navigation {
-    width: 100%;
+    width: 100vw;
+    margin: 0;
     text-align: center;
     position: fixed;
     bottom: 0;
+    display: grid;
+    grid-template-columns: 1fr repeat(5, 2fr) 1fr;
+    background-color: lightsteelblue;
 }
 .navigation > div {
     padding: 1em 0;
-    background-color: lightsteelblue;
     font-weight: bolder;
 }
 
