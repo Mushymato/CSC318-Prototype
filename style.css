@@ -76,7 +76,7 @@ form {
     display: None;
 }
 
-#username:after {
+#username:after, #friend:after {
     content: "Online";
     color: forestgreen;
     font-size: small;
