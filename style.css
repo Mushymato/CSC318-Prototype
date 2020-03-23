@@ -16,6 +16,10 @@ form {
     margin: 1rem 0 0 0;
 }
 
+.btn-secondary {
+    color: white !important;
+}
+
 .progress {
     width: 100%;
     height: 1em;
@@ -66,4 +70,8 @@ form {
     background: lightsteelblue;
     margin: 1em;
     padding: 1em;
+}
+
+.tasks {
+    display: None;
 }

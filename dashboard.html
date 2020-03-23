@@ -10,6 +10,16 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="style.css">
     <script src="prototype.js"></script>
+    <script type="text/javascript">
+        window.onload = () => {
+            let params = getParams(window.location.href);
+            if (params.exp > 0) {
+                $('.tip').hide();
+                $('.tasks').show();
+            }
+            updateDashboard();
+        }
+    </script>
 </head>
 
 <body>
@@ -21,11 +31,15 @@
         </div>
         <br />
         <h5 class="tip">Today's Tip <span class="exp">(+5 exp)</span></h5>
-        <div class="highlight tip" onclick="addExp(5)">
+        <div class="highlight tip" onclick="addExp(5, 'dashboard.html')">
             Switch to a High Interest Savings Account
         </div>
-        <h5>Recent Activity</h5>
-        <div id="recent" style="color: gray">None</div>
+        <h5 class="tasks">Today's Tasks</h5>
+        <div class="tasks">
+            <div class="highlight"><a href="learn.html">Read 3 Definitions</a></div>
+            <div class="highlight"><a href="practice.html">Complete 3 Quizes</a></div>
+            <div class="highlight"><a href="friends.html">Visit a Friend</a></div>
+        </div>
     </form>
     <div class="navigation row">
         <div class="col-2"><a href="search.html">🔍</a></div>

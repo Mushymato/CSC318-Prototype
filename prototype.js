@@ -22,7 +22,7 @@ const data = {
         ]
     },
     ETF: {
-        name: 'ETF',
+        name: 'Exchange-Traded Fund',
         definition: 'An exchange-traded fund (ETF) is an investment fund traded on stock exchanges, much like stocks. An ETF holds assets such as stocks, commodities, or bonds and generally operates with an arbitrage mechanism designed to keep it trading close to its net asset value, although deviations can occasionally occur.',
         learn: [
             {
@@ -39,7 +39,7 @@ const data = {
                 type: 'Question',
                 question: 'What does ETF stand for?',
                 choices: ['Exchange traded fund', 'Exchange terminal fund', 'Export terminal factorial', 'Export takeup fund'],
-                correct: 1
+                correct: 0
             }
         ]
     }
@@ -73,18 +73,16 @@ function encodeQueryData(data) {
 }
 
 function updateDashboard() {
+    const expPerLvl = 25;
     const params = getParams(window.location.href);
     if (params.username) {
         $('#username').html(params.username);
     }
     if (params.exp) {
-        const lv = Math.floor(params.exp / 100);
+        const lv = Math.floor(params.exp / expPerLvl);
         $('#level').html(lv + 1);
-        const ex = params.exp - lv * 100;
+        const ex = params.exp - lv * expPerLvl;
         $('#expbar').css('--fill', ex + '%');
-    }
-    if (params.exp > 0) {
-        $('.tip').hide();
     }
     $('a').each((i, v) => {
         if ($(v).prop('href')) {
@@ -93,14 +91,14 @@ function updateDashboard() {
     })
 }
 
-function addExp(exp) {
+function addExp(exp, redir) {
     let params = getParams(window.location.href);
     if (!params.exp) {
         params.exp = 0;
     }
-    params.exp += exp;
+    params.exp = parseInt(params.exp) + exp;
     delete params.link;
-    window.location.replace("dashboard.html" + encodeQueryData(params));
+    window.location.replace(redir + encodeQueryData(params));
 }
 
 window.onload = () => {
