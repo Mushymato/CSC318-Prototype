@@ -75,3 +75,15 @@ form {
 .tasks {
     display: None;
 }
+
+#username:after {
+    content: "Online";
+    color: forestgreen;
+    font-size: small;
+    position: relative;
+    top: -1em;
+    left: 0.25em;
+    border: solid 0.05em forestgreen;
+    border-radius: 0.5em;
+    padding: 0em 0.25em;
+}
