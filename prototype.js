@@ -84,11 +84,21 @@ function updateDashboard() {
         const ex = params.exp - lv * expPerLvl;
         $('#expbar').css('--fill', ex + '%');
     }
+    updateLinks(params);
+}
+
+function updateLinks(params) {
     $('a').each((i, v) => {
         if ($(v).prop('href')) {
             $(v).prop('href', $(v).prop('href') + encodeQueryData(params));
         }
-    })
+    });
+}
+
+task_map = {
+    'learn_definition.html': 't1',
+    'practice.html': 't2',
+    'friend_profile': 't3'
 }
 
 function addExp(exp, redir) {
@@ -98,6 +108,14 @@ function addExp(exp, redir) {
     }
     params.exp = parseInt(params.exp) + exp;
     delete params.link;
+    if (redir in task_map) {
+        if (!params.tasks) {
+            params.tasks = '';
+        }
+        if (!params.tasks.includes(task_map[redir])) {
+            params.tasks += task_map[redir];
+        }
+    }
     window.location.replace(redir + encodeQueryData(params));
 }
 

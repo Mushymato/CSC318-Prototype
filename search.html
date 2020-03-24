@@ -12,17 +12,23 @@
     <script src="prototype.js"></script>
     <script type="text/javascript">
         window.onload = () => {
+            const category = {
+                Learn: 'learn_definition.html',
+                Practice: 'practice_quiz.html'
+            }
             $('#search').change((e) => {
                 let params = getParams(window.location.href);
                 const value = $('#search').val().trim();
                 if (data[value] != undefined) {
-                    const hl = $('<div></div>');
-                    hl.addClass('highlight');
-                    const ln = $('<a>' + data[value].name + '</a>');
-                    params.topic = value;
-                    ln.prop('href', 'learn_definition.html' + encodeQueryData(params));
-                    hl.append(ln);
-                    $('#results').append(hl);
+                    for (const lnk of Object.keys(category)) {
+                        const hl = $('<div></div>');
+                        hl.addClass('highlight');
+                        const ln = $('<a>' + lnk + ': ' + data[value].name + '</a>');
+                        params.topic = value;
+                        ln.prop('href', category[lnk] + encodeQueryData(params));
+                        hl.append(ln);
+                        $('#results').append(hl);
+                    }
                 }
             });
             updateDashboard();

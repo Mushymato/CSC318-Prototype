@@ -15,13 +15,16 @@
             let target = $(e.target);
             target.addClass('exp')
             target.html(target.html() + ' Correct (+10 exp)');
+            target.href = '#';
             const a = $('<a>Next</a>');
             a.addClass('btn btn-secondary col');
             const add10Exp = () => {
                 addExp(10, 'practice.html');
             }
             a.click(add10Exp);
-            $('#message').append(a)
+            target.off('click');
+            target.click(add10Exp);
+            $('#message').append(a);
         }
         function quizWrong() {
             $('#message').html('Try again!');
@@ -50,6 +53,11 @@
 
 <body>
     <form method="GET">
+        <h2 id="username">Username</h2>
+        <h5>Level [<span id="level">1</span>]</h5>
+        <div class="progress">
+            <div id="expbar" class="filled" style="--fill: 0%;"></div>
+        </div>
         <br />
         <h5 id="question"></h5>
         <div>

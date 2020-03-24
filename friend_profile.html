@@ -10,6 +10,19 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="style.css">
     <script src="prototype.js"></script>
+    <script type="text/javascript">
+        window.onload = () => {
+            let params = getParams(window.location.href);
+            if (!params.tasks) {
+                params.tasks = '';
+            }
+            if (!params.tasks.includes('t3')) {
+                params.tasks += 't3';
+                window.location.replace('friend_profile.html' + encodeQueryData(params));
+            }
+            updateLinks(params);
+        }
+    </script>
 </head>
 
 <body>
@@ -21,7 +34,6 @@
         </div>
         <br />
         <h5>Medals</h5>
-        <img src="img/achievements.png" width="300px">
     </form>
     <div class="navigation row">
         <div><a href="search.html">🔍</a></div>

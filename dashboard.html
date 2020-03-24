@@ -15,7 +15,15 @@
             let params = getParams(window.location.href);
             if (params.exp > 0) {
                 $('.tip').hide();
-                $('.tasks').show();
+            }
+            if (params.tasks) {
+                const tasks = params.tasks.split('t');
+                for (t of tasks) {
+                    $('#t' + t).hide();
+                }
+                if (tasks.length > 3) {
+                    $('#done').show();
+                }
             }
             updateDashboard();
         }
@@ -36,9 +44,10 @@
         </div>
         <h5 class="tasks">Today's Tasks</h5>
         <div class="tasks">
-            <div class="highlight"><a href="learn.html">Read 3 Definitions</a></div>
-            <div class="highlight"><a href="practice.html">Complete 3 Quizes</a></div>
-            <div class="highlight"><a href="friends.html">Visit a Friend</a></div>
+            <div class="highlight" id="t1"><a href="learn.html"><img src="img/medal1.png" width="40px" /> Watch a Video</a></div>
+            <div class="highlight" id="t2"><a href="practice.html"><img src="img/medal2.png" width="40px" /> Complete a Quiz</a></div>
+            <div class="highlight" id="t3"><a href="friends.html"><img src="img/medal3.png" width="40px" /> Visit a Friend</a></div>
+            <div class="highlight" id="done" style="display: none;">All Done</div>
         </div>
     </form>
     <div class="navigation row">
