@@ -23,6 +23,12 @@
 
 <body>
     <form method="GET">
+        <h2 id="username">Username</h2>
+        <h5>Level [<span id="level">1</span>]</h5>
+        <div class="progress">
+            <div id="expbar" class="filled" style="--fill: 0%;"></div>
+        </div>
+        <br />
         <h2 id="topic"></h2>
         <iframe id="content" width="100%" height="400" src="" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
         <a onclick="addExp(10, 'learn_definition.html')" class="btn btn-secondary col exp">Done (+ 10 exp)</a>
