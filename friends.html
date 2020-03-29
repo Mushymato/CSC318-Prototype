@@ -10,6 +10,27 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="style.css">
     <script src="prototype.js"></script>
+    <script type="text/javascript">
+        window.onload = () => {
+            const expPerLvl = 25;
+            let params = getParams(window.location.href);
+            if (params.username) {
+                $('#username').html(params.username);
+            }
+            if (params.exp) {
+                const lv = Math.floor(params.exp / expPerLvl);
+                $('#level').html(lv + 1);
+                const ex = params.exp - lv * expPerLvl;
+                $('#expbar').css('--fill', ex + '%');
+            }
+            updateLinks(params);
+            $('.friend').each((i, v) => {
+                params['friend'] = $(v).attr('data-friend-name');
+                params['friendexp'] = $(v).attr('data-friend-exp');
+                $(v).prop('href', 'friend_profile.html' + encodeQueryData(params));
+            })
+        }
+    </script>
 </head>
 
 <body>
@@ -23,7 +44,7 @@
         <h5>Friend List - <a href="social.html">Connect</a></h5>
         <div class="friendlist">
             <div>
-                <a href="friend_profile.html">
+                <a class="friend" data-friend-name="Melody" data-friend-exp="135">
                     Lv6 Melody
                 </a>
             </div>
@@ -31,18 +52,18 @@
         <h5>Leaderboard (Global)</h5>
         <div class="friendlist">
             <div>
-                <a href="friend_profile.html">
+                <a class="friend" data-friend-name="Oof" data-friend-exp="24960">
                     #1: Lv999 Oof
                 </a>
             </div>
             <div>
-                <a href="friend_profile.html">
-                    #2: Lv434 AAA
+                <a class="friend" data-friend-name="AAA" data-friend-exp="10860">
+                    #2: Lv435 AAA
                 </a>
             </div>
             <div>
-                <a href="friend_profile.html">
-                    #3: Lv325 XxxLeeksxxX
+                <a class="friend" data-friend-name="XxxLeeksxxX" data-friend-exp="8130">
+                    #3: Lv326 XxxLeeksxxX
                 </a>
             </div>
             <div>

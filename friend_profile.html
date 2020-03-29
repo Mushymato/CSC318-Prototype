@@ -20,6 +20,16 @@
                 params.tasks += 't3';
                 window.location.replace('friend_profile.html' + encodeQueryData(params));
             }
+            if (params.friend) {
+                $('#username').html(params.friend);
+            }
+            const expPerLvl = 25;
+            if (params.friendexp) {
+                const lv = Math.floor(params.friendexp / expPerLvl);
+                $('#level').html(lv + 1);
+                const ex = params.friendexp - lv * expPerLvl;
+                $('#expbar').css('--fill', ex + '%');
+            }
             updateLinks(params);
         }
     </script>
@@ -27,10 +37,10 @@
 
 <body>
     <form method="GET">
-        <h2 id="friend">Melody</h2>
-        <h5>Level [6]</h5>
+        <h2 id="username">Melody</h2>
+        <h5>Level [<span id="level">1</span>]</h5>
         <div class="progress">
-            <div class="filled" style="--fill: 15%;"></div>
+            <div id="expbar" class="filled" style="--fill: 0%;"></div>
         </div>
         <br />
         <h5>Medals</h5>

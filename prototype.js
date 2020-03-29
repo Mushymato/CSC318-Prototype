@@ -15,9 +15,15 @@ const data = {
         practice: [
             {
                 type: 'Question',
+                question: 'What does HISA stand for?',
+                choices: ['Health Industry Students of America', 'High Industry Savings Account', 'High Interest Savings of America', 'High Interest Savings Account'],
+                correct: 3,
+            },
+            {
+                type: 'Question',
                 question: 'How much interest do high interest saving accounts typically offer?',
                 choices: ['0.5%', '2.0%', '5.0%', '10.0%'],
-                correct: 1
+                correct: 1,
             }
         ]
     },
@@ -40,6 +46,90 @@ const data = {
                 question: 'What does ETF stand for?',
                 choices: ['Exchange traded fund', 'Exchange terminal fund', 'Export terminal factorial', 'Export takeup fund'],
                 correct: 0
+            }
+        ]
+    },
+    'Compound Interest': {
+        name: 'Compound Interest',
+        definition: 'Compound interest is the addition of interest to the principal sum of a loan or deposit, or in other words, interest on interest. It is the result of reinvesting interest, rather than paying it out, so that interest in the next period is then earned on the principal sum plus previously accumulated interest.',
+        learn: [
+            {
+                type: 'Video',
+                link: 'https://www.youtube.com/embed/Rm6UdfRs3gw'
+            },
+            {
+                type: 'Reading',
+                link: 'https://www.investopedia.com/terms/c/compoundinterest.asp'
+            }
+        ],
+        practice: [
+            {
+                type: 'Question',
+                question: 'The addition of interest to the principal sum of a loan or deposit is called _____.',
+                choices: ['Simple interest', 'Compound Interest', 'Savings Account', 'Investing Account'],
+                correct: 1,
+            },
+            {
+                type: 'Question',
+                question: 'With compound interest, the interest in the next period is earned on only the principal amount.',
+                choices: ['True', 'False'],
+                correct: 1,
+            }
+        ]
+    },
+    'Compound Interest': {
+        name: 'Mutual Funds',
+        definition: 'A mutual fund is a type of investment vehicle consisting of a portfolio of stocks, bonds, or other securities. Mutual funds give small or individual investors access to diversified, professionally managed portfolios at a low price.',
+        learn: [
+            {
+                type: 'Video',
+                link: 'https://www.youtube.com/embed/ngfKXvfzC74'
+            },
+            {
+                type: 'Reading',
+                link: 'https://www.investopedia.com/terms/m/mutualfund.asp'
+            }
+        ],
+        practice: [
+            {
+                type: 'Question',
+                question: 'A portfolio of stocks, bonds, or other securities is called a ______.',
+                choices: ['Exchange-Traded Fund', 'Savings Account', 'Mutual Fund', 'Investing Account'],
+                correct: 2,
+            },
+            {
+                type: 'Question',
+                question: 'Mutual funds give investors access to diversified portfolios at a low price.',
+                choices: ['True', 'False'],
+                correct: 0,
+            }
+        ]
+    },
+    Dividends: {
+        name: 'Dividends',
+        definition: 'A dividend is the distribution of a portion of the company\'s earnings, decided and managed by the company’s board of directors, and paid to a class of its shareholders.',
+        learn: [
+            {
+                type: 'Video',
+                link: 'https://www.youtube.com/embed/_sPVwmGFAiA'
+            },
+            {
+                type: 'Reading',
+                link: 'https://www.investopedia.com/terms/d/dividend.asp'
+            }
+        ],
+        practice: [
+            {
+                type: 'Question',
+                question: 'The distribution of a portion of a company’s earnings is called a _______.',
+                choices: ['Stock', 'Exchange-Traded Fund', 'Mutual Fund', 'Dividend'],
+                correct: 3,
+            },
+            {
+                type: 'Question',
+                question: 'Dividends are managed by shareholders.',
+                choices: ['True', 'False'],
+                correct: 1,
             }
         ]
     }
@@ -107,6 +197,25 @@ function addExp(exp, redir) {
         params.exp = 0;
     }
     params.exp = parseInt(params.exp) + exp;
+    delete params.link;
+    if (redir in task_map) {
+        if (!params.tasks) {
+            params.tasks = '';
+        }
+        if (!params.tasks.includes(task_map[redir])) {
+            params.tasks += task_map[redir];
+        }
+    }
+    window.location.replace(redir + encodeQueryData(params));
+}
+
+function addExpNext(exp, redir, quiz_idx) {
+    let params = getParams(window.location.href);
+    if (!params.exp) {
+        params.exp = 0;
+    }
+    params.exp = parseInt(params.exp) + exp;
+    params.quiz_idx = quiz_idx;
     delete params.link;
     if (redir in task_map) {
         if (!params.tasks) {

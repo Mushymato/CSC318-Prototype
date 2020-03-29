@@ -13,13 +13,19 @@
     <script type="text/javascript">
         function quizRight(e) {
             let target = $(e.target);
+            let params = getParams(window.location.href);
             target.addClass('exp')
             target.html(target.html() + ' Correct (+10 exp)');
             target.href = '#';
             const a = $('<a>Next</a>');
             a.addClass('btn btn-secondary col');
             const add10Exp = () => {
-                addExp(10, 'practice.html');
+                const qidx = parseInt(params.quiz_idx) + 1;
+                if (data[params.topic].practice.length <= qidx) {
+                    addExp(10, 'practice.html');
+                } else {
+                    addExpNext(10, 'practice_quiz.html', qidx);
+                }
             }
             a.click(add10Exp);
             target.off('click');
